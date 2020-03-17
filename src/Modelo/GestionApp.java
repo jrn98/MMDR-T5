@@ -2,6 +2,8 @@ package Modelo;
 
 import javax.naming.Name;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class GestionApp {
     ArrayList<User> users;
@@ -50,8 +52,9 @@ public class GestionApp {
 
     //agregar usuario
     public boolean addUser(User newUser) {
-        boolean added = true;
-        return added;
+        if (newUser == null) return false;
+        users.add(newUser);
+        return true;
     }
 
     //borrar usuario
@@ -79,21 +82,40 @@ public class GestionApp {
     }
 
     //encontrar carreras dado un String
-    public ArrayList<Race> findRaceText(String text) {
-        ArrayList<Race> foundRaces = null;
+    public ArrayList<Race> findRaceText(String name) {
+        ArrayList<Race> foundRaces = new ArrayList<Race>();
+        for (Race R : races
+        ) {
+            if (R.getNombre().toUpperCase().contains(name.toUpperCase())) foundRaces.add(R);
+
+        }
+
+
         return foundRaces;
     }
 
     //encontrar carreras dada la provincia
     public ArrayList<Race> findRaceProvince(String province) {
-        ArrayList<Race> foundRaces = null;
+        ArrayList<Race> foundRaces = new ArrayList<Race>();
+
+        for (Race R : races
+        ) {
+            if (R.getProvincia().toUpperCase().contains(province.toUpperCase())) foundRaces.add(R);
+
+        }
+
+
         return foundRaces;
     }
 
     // TODO encontrar carrera dado el id, me parece raro
     public Race findRAceId(int id) {
-        Race foundRace = null;
-        return foundRace;
+        for (Race R :
+                races) {
+            if (R.getId() == id) return R;
+
+        }
+        return null;
     }
 
     //encontrar Marcas dado el email del usuario
@@ -116,22 +138,75 @@ public class GestionApp {
 
     //encontrar las mejores N marcas que hay en una carrera
     public ArrayList<NameMark> findNumberMrksRace(int id, int n) {
-        ArrayList<NameMark> foundMarks = null;
-        return foundMarks;
+        ArrayList<NameMark> foundMarks = new ArrayList<NameMark>();
+        NameMark nameMark = null;
+        int limit = 0;
+        for (User U : users) {
 
+            for (MarkUserRace M : U.getMarcas()) {
+
+                if (M.getRace().getId() == id) {
+                    nameMark = new NameMark(M.getRace().getNombre(), M.getTiempo(), M.getAnio());
+
+                    foundMarks.add(nameMark);
+
+                }
+
+            }
+
+        }
+        if (foundMarks.size() != 0) {
+            Collections.sort(foundMarks);
+
+
+            while (foundMarks.size() > n) {
+                foundMarks.remove(foundMarks.size() - 1);
+            }
+        }
+
+        return foundMarks;
     }
 
     //encontrar todas las marcas de una carrera
     public ArrayList<NameMark> findAllMrksRace(int id) {
-        ArrayList<NameMark> foundMarks = null;
+        ArrayList<NameMark> foundMarks = new ArrayList<NameMark>();
+        NameMark nameMark = null;
+        for (User U : users) {
+
+            for (MarkUserRace M : U.getMarcas()) {
+
+                if (M.getRace().getId() == id) {
+                    nameMark = new NameMark(M.getRace().getNombre(), M.getTiempo(), M.getAnio());
+
+                    foundMarks.add(nameMark);
+                }
+            }
+
+        }
+
         return foundMarks;
 
     }
 
     //encontrar todas als marcas de una carrera en cierto año
     public ArrayList<NameMark> findAllMrksRaceYear(int id, int year) {
-        ArrayList<NameMark> foundMarks = null;
+        ArrayList<NameMark> foundMarks = new ArrayList<NameMark>();
+        NameMark nameMark = null;
+        for (User U : users) {
+
+            for (MarkUserRace M : U.getMarcas()) {
+
+                if (M.getRace().getId() == id && M.getAnio() == year) {
+                    nameMark = new NameMark(M.getRace().getNombre(), M.getTiempo(), M.getAnio());
+
+                    foundMarks.add(nameMark);
+                }
+            }
+
+        }
+
         return foundMarks;
+
     }
 
 

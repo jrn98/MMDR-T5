@@ -2,7 +2,7 @@ package Modelo;
 
 import java.util.Calendar;
 
-public class NameMark {
+public class NameMark implements Comparable<NameMark> {
     String nombre;
     Calendar tiempo;
     int anio;
@@ -39,17 +39,18 @@ public class NameMark {
 
     @Override
     public String toString() {
-        return "NameMark{" +
-                "nombre='" + nombre + '\'' +
-                ", tiempo=" + tiempo +
-                ", anio=" + anio +
-                '}';
+        return "---------------------------------------------" +
+                "Nombre='" + nombre + '\n' +
+                "Tiempo=" + tiempo + "\n" +
+                "Anio=" + anio + "\n" +
+                "---------------------------------------------";
     }
 
     //TODO ver q hace esto, compara los tiempos de varias marcas???
-    public int compareTo(MarkUserRace marca){
-        int comparado = 0;
-        return comparado;
 
+
+    @Override
+    public int compareTo(NameMark nameMark) {
+        return this.tiempo.compareTo(nameMark.getTiempo());
     }
 }

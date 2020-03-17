@@ -64,12 +64,13 @@ public class Race {
 
     @Override
     public String toString() {
-        return "Race{" +
+        return "-----------------------------------------------------------------------------\n" +
                 "id=" + id +
-                ", nombre='" + nombre + '\'' +
-                ", localidad='" + localidad + '\'' +
-                ", provincia='" + provincia + '\'' +
-                ", web='" + web + '\'' +
-                '}';
+                "nombre='" + nombre + '\n' +
+                "localidad='" + localidad + '\n' +
+                "provincia='" + provincia + '\n' +
+                "web='" + web + '\n' +
+                "-----------------------------------------------------------------------------"
+                ;
     }
 }

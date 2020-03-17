@@ -8,20 +8,20 @@ public class User {
     String clave;
     String nombre;
     String apellidos;
-    String numMovil;
+    Long numMovil;
     Calendar fechaNac;
     int contadorMarcas;
     ArrayList<MarkUserRace> marcas;
 
-    public User(String email, String clave, String nombre, String apellidos, String numMovil, Calendar fechaNac, int contadorMarcas, ArrayList<MarkUserRace> marcas) {
+    public User(String email, String clave, String nombre, String apellidos, Long numMovil, Calendar fechaNac) {
         this.email = email;
         this.clave = clave;
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.numMovil = numMovil;
         this.fechaNac = fechaNac;
-        this.contadorMarcas = contadorMarcas;
-        this.marcas = marcas;
+        this.contadorMarcas = 0;
+        this.marcas = new ArrayList<MarkUserRace>();
     }
 
     public String getEmail() {
@@ -56,14 +56,6 @@ public class User {
         this.apellidos = apellidos;
     }
 
-    public String getNumMovil() {
-        return numMovil;
-    }
-
-    public void setNumMovil(String numMovil) {
-        this.numMovil = numMovil;
-    }
-
     public Calendar getFechaNac() {
         return fechaNac;
     }
@@ -78,6 +70,14 @@ public class User {
 
     public void setContadorMarcas(int contadorMarcas) {
         this.contadorMarcas = contadorMarcas;
+    }
+
+    public Long getNumMovil() {
+        return numMovil;
+    }
+
+    public void setNumMovil(Long numMovil) {
+        this.numMovil = numMovil;
     }
 
     public ArrayList<MarkUserRace> getMarcas() {
